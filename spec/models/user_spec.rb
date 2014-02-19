@@ -100,4 +100,13 @@ describe User do
         it { should be_invalid}
     end
 
+    describe "email address with mixed case" do 
+        let(:mixed_case_email) {"Foo@ExaMPLe.CoM"}
+
+        it "Should be all lower-case" do
+            @user.email = mixed_case_email
+            @user.save
+            expect(@user.reload.email).to eq mixed_case_email.downcase
+        end
+    end
 end
