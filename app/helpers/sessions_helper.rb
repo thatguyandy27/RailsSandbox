@@ -26,6 +26,13 @@ module SessionsHelper
 
   end
 
+  def signed_in_user
+    if !signed_in?
+      store_location
+      redirect_to signin_url, :notice => "Please sign in." 
+    end
+  end
+
   def current_user?(user)
     return user == current_user
   end
